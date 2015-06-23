@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150623213735) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.text   "about"
+    t.string "uid"
   end
 
 end
