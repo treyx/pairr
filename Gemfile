@@ -9,6 +9,9 @@ gem "jquery-rails"
 gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "omniauth-github"
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem "web-console", "~> 2.0"
@@ -16,4 +19,5 @@ group :development, :test do
   gem "capybara"
   gem "pry-rails"
   gem "awesome_print"
+  gem "launchy"
 end
