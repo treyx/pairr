@@ -16,6 +16,14 @@ RSpec.feature "user signup" do
       click_link_or_button "Login With GitHub"
     end.to change{ User.count }.from(0).to(1)
   end
+
+  scenario "should be prompted to add about text if new user" do
+    visit new_user_path
+    mock_omniauth_user
+    click_link_or_button "Login With GitHub"
+    save_and_open_page
+    expect(page).to have_content("Select Your Favorite Languages")
+  end
 end
 
 private
