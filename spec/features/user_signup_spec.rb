@@ -15,8 +15,6 @@ RSpec.feature "user signup" do
       mock_omniauth_user
       click_link_or_button "Login With GitHub"
     end.to change{ User.count }.from(0).to(1)
-    expect(current_path).to eq(root_path)
-    expect(page).to have_link("Find Pairs")
   end
 end
 
