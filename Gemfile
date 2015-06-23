@@ -12,6 +12,7 @@ gem "omniauth-github"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem "bootstrap_form"
 
 group :development, :test do
   gem "web-console", "~> 2.0"
