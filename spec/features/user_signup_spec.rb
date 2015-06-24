@@ -21,7 +21,7 @@ RSpec.feature "user signup" do
     visit new_user_path
     mock_omniauth_user
     click_link_or_button "Login With GitHub"
-    expect(page).to have_content("Select Your Favorite Languages")
+    expect(page).to have_content("Please Tell Us Some More Information")
   end
 end
 
