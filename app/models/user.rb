@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     half_approved.flatten.uniq
   end
 
+  def matches
+    find_matched_user.map { |id| User.find(id) }
+  end
+
   private
 
   def current_user_id
@@ -73,5 +77,9 @@ class User < ActiveRecord::Base
   def approved_matches_as_invitee
     matches = UserMatch.where(invitee_id: self.id, match_status: "approved")
     matches.pluck("initiator_id", "invitee_id")
+  end
+  def find_matched_user
+    UserMatch.where(initiator_id: self.id, match_status: "approved").pluck(:invitee_id) +
+    UserMatch.where(invitee_id: self.id, match_status: "approved").pluck(:initiator_id)
   end
 end

@@ -48,6 +48,6 @@ RSpec.feature "user matches" do
     click_link_or_button("Accept")
     expect(page).to have_content("Congrats!")
     visit root_path
-    expect(page).to have_content("Mutual Matches")
+    expect(page).to have_content("Time to pair")
   end
 end
