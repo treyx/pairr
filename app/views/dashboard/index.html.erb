@@ -4,8 +4,8 @@
   <%= link_to "Find Pairs", matches_path, class: "btn btn-success" %>
   <% if current_user.matches %>
   <br><br><br><br>
-  <h4>You've been matched! Time to pair </h4>
     <% current_user.matches.each do |match| %>
+    <h4>You've been matched! Time to pair </h4>
       <%= "#{current_user.username} + #{match.username} are a match!" %>
     <% end %>
   <% end %>
