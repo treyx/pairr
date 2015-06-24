@@ -11,12 +11,12 @@ RSpec.feature "user signup" do
 
   scenario "should be able to signup with GitHub Omniauth" do
     expect do
-      login
+      login_first
     end.to change{ User.count }.from(0).to(1)
   end
 
   scenario "should be prompted to add about text if new user" do
-    login
+    login_first
     expect(page).to have_content("Please Tell Us Some More Information")
   end
 end

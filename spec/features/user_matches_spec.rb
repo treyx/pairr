@@ -4,7 +4,7 @@ include Login
 RSpec.feature "user matches" do
   let(:other_user) { User.create(username: "wycats") }
   before(:each) do
-    login
+    login_first
     visit root_path
   end
 
@@ -15,7 +15,7 @@ RSpec.feature "user matches" do
   scenario "can view an available pair" do
     User.create(username: "wycats")
     click_link_or_button("Find Pairs")
-    expect(page).to have_content(other_user.username)
+    expect(page).to have_content("wycats")
     expect(page).to have_content("Accept")
     expect(page).to have_content("Reject")
   end
@@ -23,10 +23,31 @@ RSpec.feature "user matches" do
   scenario "can view an available pair" do
     User.create(username: "wycats")
     click_link_or_button("Find Pairs")
-    expect(page).to have_content(other_user.username)
-    click_link_or_button("Accept")
+    expect(page).to have_content("wycats")
     click_link_or_button("Accept")
     expect(page).to_not have_content(other_user.username)
-    expect(page).to have_content("There aren't any more users... Tell your friends!")
+  end
+
+  scenario "can see a previously matched user first" do
+    login_second
+    visit matches_path
+    expect(page).to have_content("first_user")
+    click_link_or_button("Accept")
+    login_first
+    visit matches_path
+    expect(page).to have_content("second_user")
+  end
+
+  scenario "can complete a match" do
+    login_second
+    visit matches_path
+    expect(page).to have_content("first_user")
+    click_link_or_button("Accept")
+    login_first
+    visit matches_path
+    click_link_or_button("Accept")
+    expect(page).to have_content("Congrats!")
+    visit root_path
+    expect(page).to have_content("Time to pair")
   end
 end

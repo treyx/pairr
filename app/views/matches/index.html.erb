@@ -1,16 +1,29 @@
 <div align="center">
-  <% if next_possibility  %>
-    <%= image_tag(@possible_match.image_url, class: "profile-picture") %>
-    <h3>Name: <%= @possible_match.name %></h3>
-    <h3>GitHub username: <%= @possible_match.username %></h3>
-    <h3>About Me: <%= @possible_match.about %></h3>
-    <% @possible_match.languages.each do |language| %>
-      <h5> <%= language.name %> </h5>
-    <% end %>
-    <div class="btn-group">
-      <%= link_to "Accept", user_matches_path(invitee_id: @possible_match.id), method: :post, class: "btn btn-success" %>
-      <%= link_to "Reject", user_matches_path(invitee_id: @possible_match.id, status: "rejected"), method: :post, class: "btn btn-danger" %>
-    </div>
+
+  <% if @awaiting_approval  %>
+      <%= image_tag(@awaiting_approval.image_url, class: "profile-picture") %>
+      <h3>Name: <%= @awaiting_approval.name %> </h3>
+      <h3>GitHub username: <%= @awaiting_approval.username %></h3>
+      <h3>About Me: <%= @awaiting_approval.about %></h3>
+      <% @awaiting_approval.languages.each do |language| %>
+        <h5> <%= language.name %> </h5>
+      <% end %>
+      <div class="btn-group">
+        <%= link_to "Accept", user_matches_path(invitee_id: @awaiting_approval.id), method: :post, class: "btn btn-success" %>
+        <%= link_to "Reject", user_matches_path(invitee_id: @awaiting_approval.id, status: "rejected"), method: :post, class: "btn btn-danger" %>
+      </div>
+  <% elsif next_possibility  %>
+      <%= image_tag(@possible_match.image_url, class: "profile-picture") %>
+      <h3>Name: <%= @possible_match.name %></h3>
+      <h3>GitHub username: <%= @possible_match.username %></h3>
+      <h3>About Me: <%= @possible_match.about %></h3>
+      <% @possible_match.languages.each do |language| %>
+        <h5> <%= language.name %> </h5>
+      <% end %>
+      <div class="btn-group">
+        <%= link_to "Accept", user_matches_path(invitee_id: @possible_match.id), method: :post, class: "btn btn-success" %>
+        <%= link_to "Reject", user_matches_path(invitee_id: @possible_match.id, status: "rejected"), method: :post, class: "btn btn-danger" %>
+      </div>
   <% else %>
     <p>There aren't any more users... Tell your friends!</p>
   <% end %>
