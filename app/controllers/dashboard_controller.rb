@@ -3,10 +3,4 @@ class DashboardController < ApplicationController
 
   def index
   end
-
-  private
-
-  def authorize!
-    redirect_to new_user_path unless current_user
-  end
 end
