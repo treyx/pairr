@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def next_possibility
     @next_possibility ||= current_user.available_matches.sample
   end
+
+  def awaiting_approval
+    @awaiting_approval ||= current_user.pending_approvals.sample
+  end
 end
