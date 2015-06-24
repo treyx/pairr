@@ -1,7 +1,7 @@
 <div align="center">
   <h2> Please Tell Us Some More Information </h2>
   <br><br>
-  <%= bootstrap_form_for(@user) do |f| %>
+  <%= form_for @user do |f| %>
     <div class="container">
       <%= f.text_area :about, label: "Some Information About Yourself -- Maximum 500 Characters" %>
     </div>

@@ -6,4 +6,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @languages = Language.all
   end
+
+  def update
+    binding.pry
+  end
 end
